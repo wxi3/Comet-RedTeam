@@ -4,7 +4,7 @@ Comet-红队打点系统
 
 ## 架构
 后端：python flask  
-前端：layui  
+前端：layui    
 数据库：MongoDB
 
 ## 功能
