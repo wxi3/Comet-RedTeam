@@ -1,0 +1,33 @@
+
+{% extends 'admin.html' %}
+{% block title %}Comet--系统配置{% endblock %}
+
+{% block content %}
+<div class="layui-container" style="margin-top: 100px;">
+    <div class="layui-row">
+      <div class="layui-col-md-offset3 layui-col-md6">
+        <form class="layui-form" action="" method="POST">
+          <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+              <input type="text" name="email" required  lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">Key</label>
+            <div class="layui-input-block">
+              <input type="text" name="key" required  lay-verify="required" placeholder="请输入Key" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn" lay-submit lay-filter="formAffirm" lay-submit>确认</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

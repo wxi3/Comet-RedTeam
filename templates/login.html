@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+        background-image: url('../static/images/bg.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .form-container {
+        background: linear-gradient(to right, #ff0000, #0000ff);
+        opacity: 0.65;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #ccc;
+        margin-top: 20px;
+    }
+
+    #username {
+        background: linear-gradient(to right, red, blue);
+    }
+
+    #password {
+        background: linear-gradient(to right, red, blue);
+    }
+
+    @media screen and (min-width: 768px) {
+        .form-container {
+            margin-top: 100px;
+        }
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+    h1 {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+    </style>
+</head>
+<body>
+
+<h1 class="text-center mb-4" style="margin-top: 50px;">Comet-红队打点系统</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <form class="form-container" method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

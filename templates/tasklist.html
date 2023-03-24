@@ -1,0 +1,43 @@
+{% extends 'admin.html' %}
+{% block title %}Comet--子域名查询{% endblock %}
+
+{% block content %}
+
+
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+{#                            <li><a onclick="xadmin.open('添加任务',`{{url_for('admin.create_task',target_type=target_type)}}`,450,550)" class="layui-btn layui-btn-normal"><i class="layui-icon"></i>添加任务</a></li>#}
+                            <li><a onclick="xadmin.open('添加任务','/create_task',450,550)" class="layui-btn layui-btn-normal"><i class="layui-icon"></i>添加任务</a></li>
+                        </div>
+                        <div class="layui-card-body layui-table-body layui-table-main">
+                            <table class="layui-table layui-form">
+                                <thead>
+                                  <tr>
+                                      <th>任务名称</th>
+                                      <th>任务目标</th>
+                                      <th>创建时间</th>
+                                      <th>操作</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                      <td>{{ task_Name}}</td>
+                                      <td>{{ task_Targets }}</td>
+                                      <td>{{ task_Time }}</td>
+                                      <td><a href="/del_task">删除</a></td>
+                                  </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

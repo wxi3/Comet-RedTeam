@@ -1,0 +1,83 @@
+{#{% extends 'base.html' %}#}
+{#{% block title %}FuckSafe--红队打点系统{% endblock %}#}
+{##}
+{#{% block content %}#}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{% block title %}Comet--红队打点系统{% endblock %}</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <script src="../static/layui/layui.js"></script>
+  <script src="../static/layui/xadmin.js"></script>
+  <style>
+      .layui-logo a {
+          color: red; /* 设置为红色 */
+          font-weight: bold; /* 字体加粗 */
+          font-size: 15px; /* 设置字体大小 */
+        }
+  </style>
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <div class="layui-logo"><a href="/welcome">Comet-红队打点系统</a></div>
+          <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                    <img src="../static/images/avatar.png" class="layui-nav-img">
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">Change PassWord</a></dd>
+                    <dd><a href="/logout">Sign out</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+          </ul>
+      </div>
+  
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+          <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item">
+              <a href="/tasklist" style="color: aliceblue;">子域名查询</a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="/vulninfo" style="color: aliceblue;">漏洞信息</a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="/subdomainInfo" style="color: aliceblue;">子域名信息</a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="/vulninfo" style="color: aliceblue;">敏感文件</a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="/sysconfig" style="color: aliceblue;">系统配置</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="layui-body" >
+
+            {% block content %}{% endblock %}
+      </div>
+        <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    测试系统--Comet 1.0  by 0verf1ow5
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+{#{% endblock %}#}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子域名收集</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">子域名收集</h1>
+        <form id="collect-form">
+            <div class="mb-3">
+                <label for="domains" class="form-label">请输入域名</label>
+                <textarea class="form-control" id="domains" name="domains" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">开始收集</button>
+        </form>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function() {
+            $('#collect-form').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/collect',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        alert(response.message);
+                        window.location.href = '/subdomains';
+                    },
+                    error: function(xhr, status, error) {
+                        alert(xhr.responseJSON.message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

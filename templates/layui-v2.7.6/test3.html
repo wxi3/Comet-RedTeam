@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>后台管理系统</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+  <!-- 头部 -->
+  <div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header">
+      <div class="layui-logo">后台管理系统</div>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+          <a href="javascript:;">
+            <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+            tester
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" id="show-profile">Your Profile</a></dd>
+            <dd><a href="javascript:;" lay-event="Settings">Settings</a></dd>
+            <dd><a href="javascript:;" lay-event="logout">Sign out</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+          <a href="javascript:;">
+            <i class="layui-icon layui-icon-more-vertical"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- 弹窗代码 -->
+    <div class="layui-layer-shade" style="display:none;"></div>
+    <div class="layui-layer layui-layer-iframe layui-layer-border layui-layer-msg" style="display:none;width:500px;height:400px;">
+        <div class="layui-layer-content">
+            <iframe frameborder="0" src="/profile" style="width:100%;height:100%;"></iframe>
+        </div>
+    </div>
+    
+    <!-- 左侧垂直导航 -->
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+
+          <li class="layui-nav-item">
+            <a href="javascript:;" lay-event="show-image">
+              <i class="layui-icon layui-icon-picture"></i>
+              <cite>显示图片</cite>
+            </a>
+          </li>
+
+          <li class="layui-nav-item">
+            <a href="javascript:;" lay-event="show-subdomains">
+              <i class="layui-icon layui-icon-set"></i>
+              <cite>子域名信息</cite>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+    
+    <!-- 右侧内容栏 -->
+    <div class="layui-body">
+      <div class="layui-container">
+        <div id="content"></div>
+      </div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        测试系统--FuckSafe 1.0
+      </div>
+  </div>
+  
+  <script src="layui/layui.js"></script>
+  <script>
+    layui.use('jquery', function(){
+      var $ = layui.$;
+      
+      // 监听左侧垂直导航点击事件
+      $('.layui-nav-item').on('click', function() {
+        var event = $(this).find('a').attr('lay-event');
+        switch(event) {
+          case 'show-image':
+            // 显示图片
+            $('#content').html('<img src="https://picsum.photos/800/600"/>');
+            break;
+          case 'show-subdomains':
+            // 显示子域名信息
+            $('#content').html('<table class="layui-table"><thead><tr><th>子域名</th><th>IP 地址</th></tr></thead><tbody><tr><td>www.example.com</td><td>192.168.1.1</td></tr><tr><td>blog.example.com</td><td>192.168.1.2</td></tr><tr><td>mail.example.com</td><td>192.168.1.3</td></tr></tbody></table>');
+            break;
+        }
+      });
+
+      $('.layui-nav-item').on('click', function(){
+        var event = $(this).find('a').attr('lay-event');
+        switch(event) {
+          case 'profile':
+            // 显示图片
+            $('#content').html('<h1>This is your profile</h1>');
+            break;
+        }
+
+      });
+
+    });
+    $(function() {
+    $('#show-profile').click(function() {
+      // 显示弹窗
+      $('.layui-layer-shade').show();
+      $('.layui-layer').show();
+    });
+  });
+  </script>
+</body>
+</html>

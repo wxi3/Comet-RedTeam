@@ -1,0 +1,91 @@
+{% extends 'admin.html' %}
+{% block title %}Comet--子域名信息{% endblock %}
+
+{% block content %}
+
+
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body layui-table-body layui-table-main">
+                            <table class="layui-table layui-form" >
+                                <thead>
+                                  <tr>
+                                      <th>ID</th>
+                                      <th>subdomain</th>
+                                      <th>status_code</th>
+                                      <th>title</th>
+                                      <th>cms</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="subdomains">
+                                </tbody>
+                            </table>
+                            <div id="demo"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    $(function () {
+        initPage();
+    });
+
+    function initPage(pageConf) {
+        if (!pageConf) {
+            pageConf = {};
+            pageConf.pageSize = 10;
+            pageConf.currentPage = 1;
+        }
+        $.post("http://127.0.0.1:5000/get_sub_page", pageConf, function (data) {
+            layui.use(['laypage', 'layer'], function () {
+                var page = layui.laypage;
+                page.render({
+                    elem: 'demo',
+                    count: data.count,
+                    curr: pageConf.currentPage,
+                    limit: pageConf.pageSize,
+                    first: "首页",
+                    last: "尾页",
+                    layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                    jump: function (obj, first) {
+                        if (!first) {
+                            pageConf.currentPage = obj.curr;
+                            pageConf.pageSize = obj.limit;
+                            initPage(pageConf);
+                        }
+                    }
+                });
+                fillTable(data["data"], (pageConf.currentPage - 1) * pageConf.pageSize); //页面填充
+            })
+        });
+    }
+
+    //填充表格数据
+    function fillTable(data, num) {
+        $("#subdomains").html('');
+        $.each(data, function (index, obj) {
+            // id 很多时候并不是连续的，如果为了显示比较连续的记录数，可以这样根据当前页和每页条数动态的计算记录序号
+            index = index + num + 1;
+            var info = '';
+            info += '<tr>';
+            info += '<td>' + index + '</td>';
+            info += '<td><a href="http://'+obj.name+'"  target="_blank">' + obj.name + '</a></td>';
+            info += '<td>' + obj.status + '</td>';
+            info += '<td>' + obj.title + '</td>';
+            info += '<td>' + obj.cms + '</td>';
+            info += '</tr>';
+            $("#subdomains").append(info);
+        });
+    }
+</script>
+
+
+</body>
+
+
+{% endblock %}
