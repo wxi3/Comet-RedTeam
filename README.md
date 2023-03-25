@@ -13,3 +13,8 @@ Comet-红队打点系统
 - 指纹识别  
 - 敏感文件发现  
 - 其他.....
+
+
+## 预览
+![avatar](static/images/rm1.png)  
+![avatar](static/images/rm2.png)
