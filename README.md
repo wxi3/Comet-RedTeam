@@ -16,5 +16,8 @@ Comet-红队打点系统
 
 
 ## 预览
+- 背景为ai生成
 ![avatar](static/images/rm1.png)  
 ![avatar](static/images/rm2.png)
+![avatar](static/images/rm3.png)
+![avatar](static/images/rm4.png)
