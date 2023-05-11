@@ -1,5 +1,12 @@
 {
 	"fingerprint": [{
+		"cms": "VCMS",
+	    "method": "GET",
+		"path": "/admin.do?c=login&m=index",
+	    "location": "body",
+	    "keyword": ["VCMS"]
+	
+	},{
 		"cms": "seeyon",
 		"method": "keyword",
 		"location": "body",
@@ -9,6 +16,11 @@
 		"method": "keyword",
 		"location": "body",
 		"keyword": ["/seeyon/common/"]
+	},{
+		"cms": "狮子鱼CMS",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["/seller.php?s=/Public/login"]
 	}, {
 		"cms": "Spring env",
 		"method": "keyword",
@@ -65,16 +77,46 @@
 		"location": "body",
 		"keyword": ["loginPageSP/loginPrivacy.js"]
 	}, {
+		"cms": "EasyImage",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["EasyImage"]
+	}, {
 		"cms": "e-mobile",
 		"method": "keyword",
 		"location": "body",
 		"keyword": ["weaver,e-mobile"]
+	}, {
+		"cms": "MessageSolution",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["MessageSolution"]
+	},{
+		"cms": "Openfire",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["Openfire"]
+	},{
+		"cms": "会捷通云视讯平台",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["/him/api/rest/v1.0/node/role"]
+	}, {
+		"cms": "和信创天云桌面系统",
+		"method": "keyword",
+		"location": "body",
+		"keyword": ["和信下一代云桌面VENGD"]
 	}, {
 		"cms": "ecology",
 		"method": "keyword",
 		"location": "header",
 		"keyword": ["ecology_JSessionid"]
 	}, {
+		"cms": "TerraMaster ",
+		"method": "keyword",
+		"location": "header",
+		"keyword": ["TOS"]
+	},{
 		"cms": "Shiro",
 		"method": "keyword",
 		"location": "header",
@@ -2632,6 +2674,11 @@
 		"method": "faviconhash",
 		"location": "body",
 		"keyword": ["-1589842876"]
+	},{
+		"cms": "畅捷通",
+		"method": "faviconhash",
+		"location": "body",
+		"keyword": ["-2067519629"]
 	}, {
 		"cms": "AMH 云主机面板",
 		"method": "faviconhash",

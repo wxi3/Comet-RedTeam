@@ -22,15 +22,18 @@
                                       <th>操作</th>
                                   </tr>
                                 </thead>
+                                {% if tasks %}
+                                {% for task in tasks %}
                                 <tbody>
                                   <tr>
-                                      <td>{{ task_Name}}</td>
-                                      <td>{{ task_Targets }}</td>
-                                      <td>{{ task_Time }}</td>
-                                      <td><a href="/del_task">删除</a></td>
+                                      <td>{{ task.task_Name }}</td>
+                                      <td>{{ task.task_Targets }}</td>
+                                      <td>{{ task.task_Time }}</td>
+                                      <td><a href="" onclick="delTask('{{ task.task_Name }}')">删除</a></td>
                                   </tr>
                                 </tbody>
-
+                                {% endfor %}
+                                {% endif %}
                             </table>
                         </div>
 
@@ -38,6 +41,17 @@
                 </div>
             </div>
         </div>
+        <script>
+            function delTask(taskName) {
+              // 发送一个POST请求到后端路由函数，以删除任务
+              $.post('/del_task', {'task_name': taskName}, function(data) {
+                alert('删除成功！');
+                window.location.reload();
+              });
+              return false;
+            }
+
+        </script>
 
 
 {% endblock %}

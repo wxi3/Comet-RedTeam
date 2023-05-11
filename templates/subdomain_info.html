@@ -41,7 +41,7 @@
             pageConf.pageSize = 10;
             pageConf.currentPage = 1;
         }
-        $.post("http://127.0.0.1:5000/get_sub_page", pageConf, function (data) {
+        $.post("/get_sub_page", pageConf, function (data) {
             layui.use(['laypage', 'layer'], function () {
                 var page = layui.laypage;
                 page.render({

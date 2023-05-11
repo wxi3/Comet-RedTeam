@@ -1,31 +1,56 @@
 {% extends 'admin.html' %}
+
 {% block title %}Comet--漏洞信息{% endblock %}
 
 {% block content %}
 
-
-        <div class="layui-fluid">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body layui-table-body layui-table-main">
-                            <table class="layui-table layui-form">
-                                <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>漏洞URL</th>
-                                      <th>漏洞类型</th>
-                                      <th>时间</th>
-                                  </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-
-                    </div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form">
+                        <thead>
+                            <tr>
+                                <th>Vuln_name</th>
+                                <th>Vuln_severity</th>
+                                <th>Vuln_url</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in results %}
+                            <tr>
+                                <td>{{ item.vuln_name }}</td>
+                                <td>{{ item.vuln_severity }}</td>
+                                <td>{{ item.vuln_url }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div id="demo1"></div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
+<script type="text/javascript">
+    layui.use(['laypage'], function () {
+        var laypage = layui.laypage;
+
+        laypage.render({
+            elem: 'demo1',
+            count: {{ count }}, //数据总数
+            limit: {{ per_page }}, //每页显示的条数
+            curr: {{ page }}, //当前页数
+            layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+            jump: function (obj, first) {
+                if (!first) {
+                    window.location.href = "/vulninfo?page=" + obj.curr + "&per_page=" + obj.limit;
+                }
+            }
+        });
+    });
+</script>
 
 {% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'admin.html' %}
+{% block title %}Comet--文件泄露{% endblock %}
+
+{% block content %}
+
+    <div class="layui-container" style="margin-top: 20px;">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>URL</th>
+                    <th>Title</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+        <div id="page"></div>
+    </div>
+
+    <script>
+        layui.use(['laypage'], function() {
+            var laypage = layui.laypage;
+
+            function loadData(page, limit) {
+                $.get('/leakfile_data', {'page': page, 'limit': limit}, function(res) {
+                    var html = '';
+                    var start = (page - 1) * limit + 1;
+                    $.each(res.data, function(i, item) {
+                        html += '<tr>';
+                        html += '<td>' + (start + i) + '</td>';
+                        html += '<td>' + item.url + '</td>';
+                        html += '<td>' + item.title + '</td>';
+                        html += '<td>' + item.size + '</td>';
+                        html += '</tr>';
+                    });
+                    $('#data').html(html);
+
+                    // 更新表格
+                    var end = start + res.data.length - 1;
+                    $('#table').find('caption').remove();
+                    $('#table').prepend('<caption>Showing ' + start + ' to ' + end + ' of ' + res.count + ' entries</caption>');
+
+                    laypage.render({
+                        elem: 'page',
+                        count: res.count,
+                        limit: limit,
+                        curr: page,
+                        jump: function(obj, first) {
+                            if (!first) {
+                                loadData(obj.curr, obj.limit);
+                            }
+                        }
+                    });
+                });
+            }
+
+            loadData(1, 10);
+        });
+    </script>
+
+
+{% endblock %}
